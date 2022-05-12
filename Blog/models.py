@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 
 class BlogTag(models.Model):
@@ -15,7 +16,7 @@ class Blog(models.Model):
     #title is unique so that we don't have duplicates
     title = models.CharField(max_length=255, unique=True)
     author = models.ForeignKey(User, related_name='blog_author', on_delete=models.CASCADE)
-    content = models.TextField()
+    content = HTMLField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
